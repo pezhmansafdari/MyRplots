@@ -57,7 +57,7 @@ for (i in 1:length(levs)) {
     ellips <- ellipse3d(cov(cbind(xx,yy,zz)),
               centre=c(mean(xx), mean(yy), mean(zz)), level = 0.95)
     shade3d(ellips, col = groupCol[i], alpha = 0.1, lit = FALSE)}
-# rsize manually to the rigth size and then create legen
+# rsize manually to the rigth size and then create legend
 legend3d("right", legend =legend, pch=16, col=legendCol, cex=2, inset=c(0.15))
 dir.create("animation_merge")
 
