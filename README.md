@@ -25,3 +25,6 @@ size = 6, hjust = 1))+
 coord_fixed()+
 labs(x="Virus Names", y="Virus Names")
 dev.off()
+![Betapartiti](https://user-images.githubusercontent.com/5850834/110440473-5e0ebe00-80c1-11eb-829a-0c36e91ab09a.jpg)
+
+### 
