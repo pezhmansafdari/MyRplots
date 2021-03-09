@@ -1,5 +1,6 @@
 # MyRplots
-A work flow of creating plots for gene expression data
+A work flow of creating plots for genomic data
+
 ### Creating similarity distance triangle heat map
 library(reshape2)
 library(ggplot2)
@@ -27,4 +28,19 @@ labs(x="Virus Names", y="Virus Names")
 dev.off()
 ![Betapartiti](https://user-images.githubusercontent.com/5850834/110440473-5e0ebe00-80c1-11eb-829a-0c36e91ab09a.jpg)
 
-### 
+### Creating OTU taxonomy tree plot
+mafft --retree 2 --maxiterate 1000 --thread 10 --leavegappyregion otu.fasta > otu.aln
+FastTree -pseudo otu.aln > psudu_otu.tree
+FastTree -intree psudu_otu.tree -pseudo otu.aln > otu.tree
+# in R 
+library(ape)
+library(ggtree)
+info <- read.table("info.txt", header=TRUE, row.names=1)
+tree<-read.tree("otu.tree")
+p <- ggtree(tree, layout='circular') %<+% info +
+geom_tippoint(aes(color=Division), size=1)+
+scale_color_manual(values=c("green", "purple","red"))+
+geom_tiplab(aes(color=Division, angle=angle), align=T, linetype="dotted", size=2, hjust=1, linesize = 0.2, offset=0.75)+
+theme(legend.position = "top")
+![otu](https://user-images.githubusercontent.com/5850834/110444773-13dc0b80-80c6-11eb-9315-3ec52b6177b9.jpg)
+
