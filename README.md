@@ -26,7 +26,6 @@ size = 6, hjust = 1))+
 coord_fixed()+
 labs(x="Virus Names", y="Virus Names")
 dev.off()
-![Betapartiti](https://user-images.githubusercontent.com/5850834/110440473-5e0ebe00-80c1-11eb-829a-0c36e91ab09a.jpg)
 
 ### Creating OTU taxonomy tree plot
 mafft --retree 2 --maxiterate 1000 --thread 10 --leavegappyregion otu.fasta > otu.aln
@@ -42,7 +41,6 @@ geom_tippoint(aes(color=Division), size=1)+
 scale_color_manual(values=c("green", "purple","red"))+
 geom_tiplab(aes(color=Division, angle=angle), align=T, linetype="dotted", size=2, hjust=1, linesize = 0.2, offset=0.75)+
 theme(legend.position = "top")
-![otu](https://user-images.githubusercontent.com/5850834/110444773-13dc0b80-80c6-11eb-9315-3ec52b6177b9.jpg)
 
 ### creating animated 3D PCA plot with PCA data extracted from DeSeq2 in R
 library(rgl)
