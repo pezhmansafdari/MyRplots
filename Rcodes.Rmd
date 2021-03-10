@@ -3,6 +3,7 @@ library(ggplot2)
 library(ape)
 library(ggtree)
 library(rgl)
+library(vegan)
 
 ### Creating similarity distance triangle heat map
 Betapartiti <- read.table("Betapartitivirus3_0506.txt", fill=TRUE, col.names=paste("V",1:35), row.names=1)
@@ -71,6 +72,32 @@ File > Import > Image Sequence
 Image > type > 8-bit color
 File >Save as > Animated gif
 
-### 
+### Creating an ordination plot with vegan package and rda function
+meta <- read.delim("meta.txt")
+count_table <- read.delim("count_table.txt")
+m1 <- rda(counts_kallisto ~ Gen, data=meta, scale=TRUE)
+colvec <- c("black", "green4", "orange", "red2", "mediumblue")
+colbg <- c("red2", "red2", "red2", "mediumblue", "mediumblue", "mediumblue", "black", "black", "white", "green4", "green4", "green4", "orange","orange","orange", "white", "white","white", "white","white", "white","white", "black", "white", "white","white", "white","white", "white","white")
+leg.lvl <- c("R1", "R2", "R3", "S1", "S2", "untrt", "trt")
+leg.col <- c("black", "green4", "orange", "red2", "mediumblue", "black", "black")
+leg.bg <- c("black", "green4", "orange", "red2", "mediumblue", "white", "black")
+PercentVar <- round(100 * summary(eigenvals(m1))[2,1:4])
+
+plot(m1, choices=c(1,2), type = "n", xlim=c(-20,20), ylim=c(-20,20), xlab="", ylab="")
+with(meta, points(m1, display = "sites", col = colvec[Gen], pch = 21, bg = colbg))
+with(meta, ordiellipse(m1, Gen, kind="se", conf=0.95, col=colvec))
+with(meta, ordispider(m1, Gen, col=colvec, label=FALSE))
+with(meta, ordihull(m1, Gen, col=colvec, lty=2))
+title(xlab=paste0("RD1: ",PercentVar[1],"% variance"), ylab=paste0("RD2: ",PercentVar[2],"% variance"), cex.lab=1.5, line=2.2)
+
+plot(m1, choices=c(1,3), type = "n", xlim=c(-20,20), ylim=c(-20,20), xlab="", ylab="")
+with(meta, points(m1, choices=c(1,3), display = "sites", col = colvec[Gen], pch = 21, bg = colbg))
+with(meta, ordiellipse(m1, choices=c(1,3), Gen, kind="se", conf=0.95, col=colvec))
+with(meta, ordispider(m1, choices=c(1,3), Gen, col=colvec, label=FALSE))
+with(meta, ordihull(m1, choices=c(1,3), Gen, col=colvec, lty=2))
+title(xlab=paste0("RD1: ",PercentVar[1],"% variance"), ylab=paste0("RD3: ",PercentVar[3],"% variance"), cex.lab=1.5, line=2.2)
+
+###
+
 
 
