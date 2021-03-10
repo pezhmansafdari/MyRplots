@@ -10,7 +10,7 @@ Phylogenetic tree of fungal OTUs. The OTU contigs have been assembled by pipits 
 Animated 3D PCA plot with PCA data extracted from DeSeq2 after conducting DE Analysis. Due to the big size of the file, it is uploaded as a separate file(PCA.gif)
 
 An ordination plot with vegan package and rda function. We are using raw counts mapped of RNAseq reads to the reference and the meta data file. Different combination of teh model like Phen or Gen * Phen can be modeled and plotted in a similar fashion. 
-![RDAgen1_2](https://user-images.githubusercontent.com/5850834/110599923-0db06280-818c-11eb-8fe1-35738f215372.png)
-![RDAgen1_3](https://user-images.githubusercontent.com/5850834/110599938-10ab5300-818c-11eb-988d-ac237afaffb7.png)
+![RDA_genotype_1_2](https://user-images.githubusercontent.com/5850834/110600540-b6f75880-818c-11eb-8f07-77de21a2b685.jpg)
+![RDA_genotype_1_3](https://user-images.githubusercontent.com/5850834/110600549-b959b280-818c-11eb-99a7-7cc994f9264c.jpg)
 
 
